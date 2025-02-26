@@ -29,7 +29,7 @@ type PDS struct {
 	FirstCursorSinceReset int64
 	LastList              time.Time
 	CrawlLimit            int
-	Disabled              bool `gorm:"default:false"`
+	Disabled              bool `gorm:"not null;default:false"`
 }
 
 func AutoMigrate(db *gorm.DB) error {

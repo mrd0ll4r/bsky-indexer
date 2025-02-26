@@ -1,3 +1,5 @@
+BEGIN;
+
 alter table records rename to records_old;
 
 create table records
@@ -22,3 +24,5 @@ with moved_rows as (
 )
 insert into records select * from moved_rows;
 drop table records_old;
+
+COMMIT;
