@@ -24,7 +24,7 @@ metrics:
 
 queries:
   query1:
-    interval: 30
+    interval: 300
     databases: [db1]
     metrics: [repos_fully_indexed]
     sql: >
@@ -37,12 +37,12 @@ queries:
           and (repos.first_cursor_since_reset >= pds.first_cursor_since_reset
                 or repos.first_cursor_since_reset is null or repos.first_cursor_since_reset = 0);
   query2:
-    interval: 30
+    interval: 300
     databases: [db1]
     metrics: [repos_seen]
     sql: select count(*) as repos_seen from repos;
   query3:
-    interval: 30
+    interval: 300
     databases: [db1]
     metrics: [repos_failed]
     sql: select count(*) as repos_failed from repos where failed_attempts >= 3;
@@ -52,7 +52,7 @@ queries:
   #   metrics: [posts_lang]
   #   sql: select count(*) as uk from records where collection in ('app.bsky.feed.post') and content::text like '%"langs": ["uk"]%';
   bad_records:
-    interval: 30
+    interval: 300
     databases: [db1]
     metrics: [consumer_bad_records]
     sql: |

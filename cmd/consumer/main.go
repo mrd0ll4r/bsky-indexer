@@ -60,9 +60,9 @@ func runMain(ctx context.Context) error {
 	if err != nil {
 		return fmt.Errorf("parsing DB URL: %w", err)
 	}
-	dbCfg.MaxConns = 1024
+	dbCfg.MaxConns = 200
 	dbCfg.MinConns = 10
-	dbCfg.MaxConnLifetime = 6 * time.Hour
+	dbCfg.MaxConnLifetime = 1 * time.Hour
 	conn, err := pgxpool.NewWithConfig(ctx, dbCfg)
 	if err != nil {
 		return fmt.Errorf("connecting to postgres: %w", err)

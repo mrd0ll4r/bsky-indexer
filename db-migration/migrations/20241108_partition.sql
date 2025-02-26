@@ -9,7 +9,10 @@ alter sequence records_id_seq owned by records.id;
 do $$
 begin
 for i in 0..15 loop
-   execute 'create table records_' || i || ' partition of records for values with (modulus 16, remainder ' || i || ')';
+   execute 'create table records_' || i || ' partition of records for values with (modulus 16, remainder ' || i || ') partition by hash (collection)';
+for j in 0..15 loop
+   execute 'create table records_' || i || '_' || j || ' partition of records_' || i || ' for values with (modulus 16, remainder ' || j || ')';
+end loop;
 end loop;
 end $$;
 

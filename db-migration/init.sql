@@ -1,3 +1,6 @@
+ALTER SYSTEM set full_page_writes=off;
+CHECKPOINT;
+
 insert into pds (host, disabled) values
  ('https://agaric.us-west.host.bsky.network', FALSE),
  ('https://amanita.us-east.host.bsky.network', FALSE),

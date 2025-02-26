@@ -52,6 +52,13 @@ init-db: .env
 	@docker compose stop lister
 	@cat ./db-migration/init.sql | docker exec -i "$$(docker compose ps --format '{{.Names}}' postgres)" psql -U postgres -d bluesky
 
+partition-db:
+	@cat db-migration/migrations/20241108_partition.sql | docker compose exec -iT postgres psql -U postgres -d bluesky
+	@docker compose up update-db-schema
+
+create-readonly-user:
+	@cat db-migration/create_readonly_user.sql | docker compose exec -iT postgres psql -U postgres -d bluesky
+
 sqltop:
 	watch -n 1 'cat top.sql|docker compose exec -i postgres psql -U postgres -d bluesky'
 
